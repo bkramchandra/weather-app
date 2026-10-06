@@ -10,17 +10,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
 }
 
+/* पछाडिको नक्सा */
+#map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* नक्साको अगाडिको card */
 .card {
-  background: white;
+  position: relative;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
   padding: 30px;
   border-radius: 16px;
   width: 90%;
   max-width: 380px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .search {

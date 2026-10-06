@@ -1,3 +1,16 @@
+// विश्वको नक्सा बनाउने (सुरुमा पूरै विश्व देखिन्छ)
+const map = L.map("map", {
+  zoomControl: false,
+}).setView([20, 0], 2);
+
+// नक्साको तस्बिर (tiles) OpenStreetMap बाट ल्याउने
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 18,
+  attribution: "&copy; OpenStreetMap contributors",
+}).addTo(map);
+
+let marker = null; // खोजेको सहरको चिन्ह
+
 const input = document.getElementById("cityInput");
 const button = document.getElementById("searchBtn");
 const message = document.getElementById("message");
@@ -14,7 +27,7 @@ const weatherCodes = {
   61: "Rain",
   71: "Snow",
   80: "Rain showers",
-  95: "Thunderstorm"
+  95: "Thunderstorm",
 };
 
 async function getWeather(city) {
@@ -33,6 +46,13 @@ async function getWeather(city) {
     }
 
     const { latitude, longitude, name, country } = geoData.results[0];
+
+    // नक्सा सहरमा उड्दै zoom हुन्छ
+    map.flyTo([latitude, longitude], 10, { duration: 3 });
+
+    // पुरानो चिन्ह हटाएर नयाँ राख्ने
+    if (marker) map.removeLayer(marker);
+    marker = L.marker([latitude, longitude]).addTo(map);
 
     // दोस्रो काम: त्यो location को मौसम ल्याउने
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`;

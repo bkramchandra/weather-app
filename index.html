@@ -1,31 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="card">
-    <h1>Weather App</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
 
-    <div class="search">
-      <input id="cityInput" type="text" placeholder="Enter city name">
-      <button id="searchBtn">Search</button>
+    <!-- Leaflet CSS (नक्साको design) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- पछाडिको नक्सा -->
+    <div id="map"></div>
+
+    <div class="card">
+      <h1>Weather App</h1>
+
+      <div class="search">
+        <input id="cityInput" type="text" placeholder="Enter city name" />
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <p id="message"></p>
+
+      <div id="result" class="hidden">
+        <h2 id="cityName"></h2>
+        <p id="temp"></p>
+        <p id="desc"></p>
+        <p id="humidity"></p>
+        <p id="wind"></p>
+      </div>
     </div>
 
-    <p id="message"></p>
-
-    <div id="result" class="hidden">
-      <h2 id="cityName"></h2>
-      <p id="temp"></p>
-      <p id="desc"></p>
-      <p id="humidity"></p>
-      <p id="wind"></p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <!-- Leaflet JS, script.js भन्दा पहिले हुनैपर्छ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
